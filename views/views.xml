@@ -1,0 +1,52 @@
+<odoo>
+  <data>
+
+
+    <!-- model.name action window -->
+    <record id="model_name_view_action" model="ir.actions.act_window">
+      <field name="name">Patient</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">hospital.patient</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_type">form</field>
+    </record>
+  <record id="Patient_view_form" model="ir.ui.view">
+    <field name="name">Patient</field>
+    <field name="model">hospital.patient</field>
+    <field name="arch" type="xml">
+      <form string="Patient Form">
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="age"/>
+            <field name="disease"/>
+            <field name="description"/>
+            <field name="docteurs_id"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+    <!-- This Menu Item will appear in the Upper bar, that's why It needs NO parent or action -->
+    <menuitem id="patient_view_menu" name="Hospital" />
+
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="St_Antoine_under_menu" name="St Antoine" parent="patient_view_menu"/>
+
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="Doctor_menu" name="Docteurs" parent="patient_view_menu" />
+    <menuitem id="St_antoine_doctor_act" 
+              name="Patient" parent="Doctor_menu" 
+              action="doctor_name_action"/>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="St_antoine_menu_act" 
+              name="Patient" parent="St_Antoine_under_menu" 
+              action="model_name_view_action"/>
+
+    <menuitem id="St_antoine_menu_act" 
+              name="Patient" parent="St_Antoine_under_menu" 
+              action="model_name_view_action"/>
+  </data>
+</odoo>
